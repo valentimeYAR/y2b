@@ -1,7 +1,6 @@
 import React from 'react';
 import s from './NotificationBlock.module.scss'
 import SettingsIcon from "../../../UI/Images/SettingsIcon.jsx";
-import {Link} from "react-router-dom";
 import NotificationItem from "./NotificationItem.jsx";
 
 const NotificationBlock = () => {

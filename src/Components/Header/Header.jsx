@@ -14,12 +14,12 @@ const Header = () => {
     const dispatch = useDispatch()
     const notificationBlock = useSelector((state) => state.notification.notification)
 
-    const handleNotificationBlock = () => {
-        dispatch(toggleNotification())
+    const handleNotificationBlock = (state) => {
+        dispatch(toggleNotification({notification: state}))
     }
 
     return (
-        <div className={s.container} onMouseLeave={handleNotificationBlock}>
+        <div className={s.container} onMouseLeave={() => handleNotificationBlock(false)}>
             <div className={s.left}>
                 <BurgerIcon size={'40px'}/>
                 <LogoIcon size={'40px'}/>
@@ -29,7 +29,10 @@ const Header = () => {
             </div>
             <div className={s.right}>
                 <AddVideoIcon size={'30px'}/>
-                <div style={{position: "relative"}} onClick={handleNotificationBlock}>
+                <div style={{position: "relative"}} onClick={(e) => {
+                    e.stopPropagation()
+                    handleNotificationBlock(true)
+                }}>
                     <NotificationIcon size={'30px'}/>
                     {notificationBlock && <NotificationBlock/>}
                 </div>

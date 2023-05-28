@@ -6,8 +6,8 @@ const notificationSlice = createSlice({
         notification: false
     },
     reducers: {
-        toggleNotification(state){
-            state.notification = !state.notification;
+        toggleNotification(state, action){
+            state.notification = action.payload.notification;
         }
     }
 })
