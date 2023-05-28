@@ -1,0 +1,42 @@
+
+.content{
+  background-color: #39393D;
+  display: flex;
+  margin-top: 20px;
+  border-bottom: 1px solid gray;
+  padding-bottom: 20px;
+  justify-content: space-between;
+}
+.left{
+  background-color: #39393D;
+  padding: 10px 15px;
+}
+.avatar{
+  width: 50px;
+  height: 50px;
+  background: #858585;
+  border-radius: 50%;
+}
+.text{
+  background-color: #39393D;
+  width: 234px;
+}
+.preview{
+  width: 100px;
+  height: 65px;
+  border-radius: 10px;
+}
+.center{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.right{
+  padding: 0 10px 0 0;
+  background-color: #39393D;
+}
+.time{
+  padding-top: 8px;
+  background-color: #39393D;
+  color: #A1A1A1;
+}

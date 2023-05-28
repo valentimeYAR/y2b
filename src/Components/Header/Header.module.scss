@@ -1,8 +1,18 @@
 .container{
-  width: 1400px;
+  width: 1440px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.left{
+  display: flex;
+  gap: 0 20px;
+  align-items: center;
+}
+.right{
+  display: flex;
+  align-items: center;
+  gap: 0 20px;
 }
