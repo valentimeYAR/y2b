@@ -3,7 +3,7 @@ import TagsBlock from "./Components/TagsBlock/TagsBlock.jsx";
 
 function App() {
     return (
-        <div>
+        <div style={{background: '#'}}>
             <Header/>
             <TagsBlock/>
         </div>
