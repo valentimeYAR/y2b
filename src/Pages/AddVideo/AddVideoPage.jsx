@@ -2,13 +2,14 @@ import s from './AddVideo.module.scss'
 import {useState} from "react";
 import {useDropzone} from "react-dropzone";
 import UploadIcon from "../../UI/Images/UploadIcon.jsx";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {addVideo} from "../../store/Slices/downloadVideoSlice.js";
 import axios from "axios";
 
 const AddVideoPage = () => {
     const dispatch = useDispatch()
     const [selectVideo, setSelectVideo] = useState(null);
+    const [upload, setUpload] = useState(false)
     const onDrop = (acceptedFiles) => {
         setSelectVideo(acceptedFiles[0])
     }
@@ -30,7 +31,9 @@ const AddVideoPage = () => {
                 }
                 dispatch(addVideo(videoInfo))
                 const response = await axios.post('http://example/api/upload', formData)
-
+                if(response.status === 200){
+                    setUpload(true)
+                }
             } catch (e) {
                 console.log(e)
             }
@@ -54,6 +57,7 @@ const AddVideoPage = () => {
                     )}
                 </div>
                 <div className={s.buttonContainer}>
+                    {upload ? <p>Загружен</p> : <p>Незагружен</p>}
                     <button type="submit" disabled={!selectVideo} className={s.uploadBtn}>Загрузить видео</button>
                 </div>
             </form>
