@@ -1,4 +1,3 @@
-import {useState} from 'react';
 import s from './Header.module.scss'
 import BurgerIcon from "../../UI/Images/BurgerIcon.jsx";
 import LogoIcon from "../../UI/Images/LogoIcon.jsx";
@@ -8,7 +7,8 @@ import NotificationIcon from "../../UI/Images/NotificationIcon.jsx";
 import ProfileIcon from "../../UI/Profile/ProfileIcon.jsx";
 import NotificationBlock from "./NotificationBlock/NotificationBlock.jsx";
 import {useDispatch, useSelector} from "react-redux";
-import {toggleNotification} from "../../store/notificationSlice.js";
+import {Link} from "react-router-dom";
+import {toggleNotification} from "../../store/Slices/notificationSlice.js";
 
 const Header = () => {
     const dispatch = useDispatch()
@@ -28,7 +28,9 @@ const Header = () => {
                 <Input/>
             </div>
             <div className={s.right}>
-                <AddVideoIcon size={'30px'}/>
+                <Link to={'/add-video'}>
+                    <AddVideoIcon size={'30px'}/>
+                </Link>
                 <div style={{position: "relative"}} onClick={(e) => {
                     e.stopPropagation()
                     handleNotificationBlock(true)
