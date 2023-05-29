@@ -7,7 +7,6 @@ const downloadVideoSlice = createSlice({
     },
     reducers: {
         addVideo(state, action){
-            console.log(action)
             state.video = action.payload
         }
     }
