@@ -2,14 +2,13 @@ import s from './AddVideo.module.scss'
 import {useState} from "react";
 import {useDropzone} from "react-dropzone";
 import UploadIcon from "../../UI/Images/UploadIcon.jsx";
-import {useDispatch} from "react-redux";
-import {addVideo} from "../../store/Slices/downloadVideoSlice.js";
 import axios from "axios";
+import {redirect} from "react-router-dom";
 
 const AddVideoPage = () => {
-    const dispatch = useDispatch()
     const [selectVideo, setSelectVideo] = useState(null);
-    const [uploadStatus, setUploadStatus] = useState(false)
+    const [videoTitle, setVideoTitle] = useState('');
+    const [loaded, setLoaded] = useState(false)
     const onDrop = (acceptedFiles) => {
         setSelectVideo(acceptedFiles[0])
     }
@@ -19,20 +18,15 @@ const AddVideoPage = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        if (selectVideo) {
+        if (selectVideo && videoTitle.length >= 10) {
             try {
                 const formData = new FormData()
                 formData.append('video', selectVideo)
-
-                const videoInfo = {
-                    path: selectVideo.path,
-                    name: selectVideo.name,
-                    type: selectVideo.type,
-                }
-                dispatch(addVideo(videoInfo))
-                const response = await axios.post('http://example/api/upload', formData)
+                formData.append('title', videoTitle)
+                const response = await axios.post('http://cors/api/load-video', formData)
                 if (response.status === 200) {
-                    setUploadStatus(true)
+                    setLoaded(true)
+                    window.location.href = '/'
                 }
             } catch (e) {
                 console.log(e)
@@ -47,7 +41,8 @@ const AddVideoPage = () => {
                     <input {...getInputProps()} />
                     {selectVideo ? (
                         <div className={s.onSelectedVideo}>
-                            <h2 className={`${s.videoTitle} ${s.title}`}>{selectVideo.name}</h2>
+                            <h2 className={`${s.videoTitle} ${s.title}`}>{videoTitle ? videoTitle : "Название видео"}</h2>
+                            {selectVideo && <p>Видео добавлено, введите название (мин. 10 символов)</p>}
                         </div>
                     ) : (
                         <div className={s.dropContent}>
@@ -57,8 +52,19 @@ const AddVideoPage = () => {
                     )}
                 </div>
                 <div className={s.buttonContainer}>
-                    {uploadStatus ? <p>Загружен</p> : <p>Незагружен</p>}
-                    <button type="submit" disabled={!selectVideo} className={s.uploadBtn}>Загрузить видео</button>
+                    {selectVideo !== null &&
+                        <input
+                            type={'text'}
+                            className={s.videoTitleInput}
+                            value={videoTitle}
+                            onChange={e => setVideoTitle(e.target.value)}
+                            placeholder={'Введите название видео'}
+                        />
+                    }
+                    <button type="submit" disabled={!selectVideo || videoTitle.length < 10}
+                            className={s.uploadBtn}>Загрузить видео
+                    </button>
+                    {loaded && <p>Видео успешно загружено!</p>}
                 </div>
             </form>
         </div>
