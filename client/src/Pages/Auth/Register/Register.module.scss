@@ -1,0 +1,64 @@
+.container{
+  width: 1440px;
+  margin: 0 auto;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.wrapper{
+  padding: 20px;
+  border-radius: 10px;
+  background: #29333D;
+  width: 404px;
+}
+.title{
+  font-size: 25px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.inputLabel{
+  display: flex;
+  flex-direction: column;
+  gap: 5px 0;
+  font-size: 12px;
+  margin-bottom: 20px;
+}
+.inputField{
+  padding: 10px 20px;
+  background-color: #1C232B;
+  border: 1px solid #3D4A58;
+  border-radius: 10px;
+}
+.acceptBtn{
+  width: 100%;
+  padding: 10px 20px;
+  text-align: center;
+  background-color: #00A1E7;
+  &:disabled{
+    background-color: #212932;
+    color: #5A5E53;
+    cursor: not-allowed;
+  }
+}
+.noAccount{
+  display: flex;
+  gap: 0 10px;
+  margin-top: 20px;
+  justify-content: center;
+}
+.register{
+  color: #00A1E7;
+}
+.checkbox{
+  & span{
+    color: red;
+  }
+}
+.test{
+  & span{
+    font-size: 12px;
+    color: #798593;
+  }
+}

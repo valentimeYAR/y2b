@@ -38,7 +38,7 @@ const Header = () => {
                     <NotificationIcon size={'30px'}/>
                     {notificationBlock && <NotificationBlock/>}
                 </div>
-                <ProfileIcon/>
+                <ProfileIcon link={'/login'}/>
             </div>
         </div>
     );

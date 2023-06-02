@@ -1,10 +1,9 @@
-import React from 'react';
 import s from './Profile.module.scss'
 import {Link} from "react-router-dom";
 
-const ProfileIcon = () => {
+const ProfileIcon = ({link = '/'}) => {
     return (
-        <Link to={'/'} className={s.container}>
+        <Link to={link} className={s.container}>
 
         </Link>
     );
